@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.3.5'
 	id 'io.spring.dependency-management' version '1.1.6'
+	id 'application'
 }
 
 group = 'server.ua'
@@ -33,11 +34,20 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
 	implementation 'org.springframework.boot:spring-boot-starter-security:3.4.0'
+	implementation 'com.fasterxml.jackson.core:jackson-annotations:2.15.2'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.15.2'
 
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
+
+run {
+	doFirst {
+		jvmArgs = [
+				'--module-path', '/Users/anastasiianelub/Documents/Java/javafx-sdk-23.0.1/lib',
+				'--add-modules', 'javafx.controls,javafx.fxml'
+		]
+	}
 }
+

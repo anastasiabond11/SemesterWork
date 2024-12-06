@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import server.ua.semesterWorkServer.entities.User;
 import server.ua.semesterWorkServer.services.UserService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -16,7 +18,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-
+    @CrossOrigin (origins = "*")
     @PostMapping("/")
     public ResponseEntity<User> createUser(@RequestBody User user){
         User createdUser = userService.createUser(user);
@@ -26,6 +28,7 @@ public class UserController {
                 .body(createdUser);
     }
 
+    @CrossOrigin (origins = "*")
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable("id") Long id){
@@ -35,6 +38,18 @@ public class UserController {
                 .body(user);
     }
 
+    @CrossOrigin (origins = "*")
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/")
+    public ResponseEntity<List<User>> getUsers(){
+        List<User> users = userService.getUsers();
+        return ResponseEntity
+                .status(200)
+                .body(users);
+
+    }
+
+    @CrossOrigin (origins = "*")
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable("id") Long id){
@@ -44,6 +59,7 @@ public class UserController {
                 .body("User with ID " + id + " was deleted successfully.");
     }
 
+    @CrossOrigin (origins = "*")
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<User> putUser(@PathVariable("id") Long id,

@@ -25,7 +25,7 @@ public class TransactionController {
     @Autowired
     private UserService userService;
 
-    // Create a new transaction
+    @CrossOrigin (origins = "*")
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/")
     public ResponseEntity<Transaction> createTransaction(
@@ -42,7 +42,7 @@ public class TransactionController {
                 .body(transaction);
     }
 
-    // Update an existing transaction
+    @CrossOrigin (origins = "*")
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<Transaction> putTransaction(
@@ -56,7 +56,7 @@ public class TransactionController {
                 .body(transaction);
     }
 
-    // Get a transaction by ID
+    @CrossOrigin (origins = "*")
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<Transaction> getTransaction(@PathVariable("id") Long transactionId) {
@@ -67,8 +67,7 @@ public class TransactionController {
                 .body(transaction);
     }
 
-
-    // Delete a transaction by ID
+    @CrossOrigin (origins = "*")
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteTransaction(@PathVariable("id") Long transactionId) {

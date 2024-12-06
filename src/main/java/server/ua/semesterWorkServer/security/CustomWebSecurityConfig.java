@@ -39,7 +39,7 @@ public class CustomWebSecurityConfig {
                         .loginPage("/login")
                         .permitAll()
                 )
-                .cors(AbstractHttpConfigurer::disable)
+                //.cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
                 .logout(LogoutConfigurer::permitAll);
 

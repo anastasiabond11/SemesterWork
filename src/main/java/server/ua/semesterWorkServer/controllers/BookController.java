@@ -15,6 +15,7 @@ public class BookController {
     @Autowired
     BookService bookService;
 
+    @CrossOrigin (origins = "*")
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/")
     public ResponseEntity<Book> createBook(@RequestBody Book book){
@@ -25,6 +26,7 @@ public class BookController {
 
     }
 
+    @CrossOrigin (origins = "*")
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBook(@PathVariable("id") Long id) {
         Book book = bookService.getBook(id);
@@ -33,6 +35,7 @@ public class BookController {
                 .body(book);
     }
 
+    @CrossOrigin (origins = "*")
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteBook(@PathVariable("id") Long id) {
@@ -42,6 +45,7 @@ public class BookController {
                 .body("Book with ID " + id + " was deleted successfully.");
     }
 
+    @CrossOrigin (origins = "*")
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<Book> putBook(@PathVariable("id") Long id, @RequestBody Book updatedBook) {

@@ -10,6 +10,7 @@ import server.ua.semesterWorkServer.security.Roles;
 import server.ua.semesterWorkServer.security.UserRole;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -53,6 +54,11 @@ public class UserService {
         existingUser.setPassword(updatedUser.getPassword());
 
         return userRepo.save(existingUser);
+    }
+
+    public List<User> getUsers() {
+
+        return userRepo.findAll();
     }
 }
 
